@@ -17,7 +17,11 @@ class Danios_update extends Component {
         const {id,value}=e.target
         this.setState({
            [id]:value
-       })
+       }
+       )
+   }
+   componentDidMount(){
+    this.setState({nombre:this.props.match.params.nombre})
    }
    onChangeStatus=(estatus)=>{
      this.setState.nombre_estatus=estatus
@@ -29,6 +33,7 @@ class Danios_update extends Component {
        .catch(err => alert(err))
    }
     render(){
+        
         return (
             
             <form className="p-4" onSubmit={this.onSubmitForm}>
@@ -39,6 +44,7 @@ class Danios_update extends Component {
                                 <input type="text" className="form-control" id="nombre" placeholder="Nombre del daño"
                                     onChange={this.onInputChange}
                                     value={this.state.nombre}
+                                    
                                 />
                         </div>
                         <div className="col-2">

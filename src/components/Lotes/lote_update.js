@@ -13,6 +13,9 @@ class lote_update extends Component {
             nombre_estatus:"Activo"
         }
     }
+    componentDidMount(){
+        this.setState({nombre:this.props.match.params.nombre})
+       }
     onInputChange=(e)=>{
         const {id,value}=e.target
         // console.log(e.target.value)

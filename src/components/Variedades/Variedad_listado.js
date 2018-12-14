@@ -26,7 +26,7 @@ class Variedad_listado extends Component {
                     {fn_estatus(this.props.estatus)}
                 </td>
                 <td>
-                    <a class="nav-link badge badge-pill badge-primary" href={'/catalogo/Variedad/update/'+this.props.id} >Editar</a>
+                    <a class="nav-link badge badge-pill badge-primary" href={'/catalogo/Variedad/update/'+this.props.id+'/'+this.props.nombre} >Editar</a>
                 </td>
             </tr>
                 

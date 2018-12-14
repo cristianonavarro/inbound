@@ -34,19 +34,19 @@ class App extends Component {
 
             <div className="container">
               <Route exact path="/catalogo/lotes" component={Lote} />
-              <Route exact path="/catalogo/lotes/update/:id" component={lote_update} />
+              <Route exact path="/catalogo/lotes/update/:id/:nombre" component={lote_update} />
 
               <Route exact path="/catalogo/cultivos" component={Cultivo} />
-              <Route exact path="/catalogo/cultivos/update/:id" component={Cultivo_update} />
+              <Route exact path="/catalogo/cultivos/update/:id/:nombre" component={Cultivo_update} />
 
               <Route exact path="/catalogo/casetas" component={Caseta} />
-              <Route exact path="/catalogo/casetas/update/:id" component={Caseta_update} />
+              <Route exact path="/catalogo/casetas/update/:id/:nombre" component={Caseta_update} />
 
               <Route exact path="/catalogo/variedad" component={Variedad} />
-              <Route exact path="/catalogo/variedad/update/:id" component={Variedad_update} />
+              <Route exact path="/catalogo/variedad/update/:id/:nombre" component={Variedad_update} />
 
               <Route exact path="/catalogo/danios" component={Danios} />
-              <Route exact path="/catalogo/danios/update/:id" component={Danios_update} />
+              <Route exact path="/catalogo/danios/update/:id/:nombre" component={Danios_update} />
 
 
             </div>

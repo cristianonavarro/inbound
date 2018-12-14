@@ -29,7 +29,7 @@ class Caseta_listado extends Component {
                     {fn_estatus(this.props.estatus)}
                 </td>
                 <td>
-                    <a className="nav-link badge badge-pill badge-primary" href={'/catalogo/casetas/update/'+this.props.id} >Editar</a>
+                    <a className="nav-link badge badge-pill badge-primary" href={'/catalogo/casetas/update/'+this.props.id+'/'+this.props.nombre} >Editar</a>
                 </td>
             </tr>
                 
