@@ -50,7 +50,11 @@ class App extends Component {
               <Route exact path="/catalogo/variedad/update/:id/:nombre" component={Variedad_update} />
 
               <Route exact path="/catalogo/danios" component={Danios} />
+
               <Route exact path="/catalogo/danios/update/:id/:nombre" component={Danios_update} />
+
+
+              <Route exact path="/catalogo/danios/update/:id" component={Danios_update} />
 
               <Route exact path="/inbound" component={Inbound} />
               <Route exact path="/inbound/detalle/:id" component={InboundDetalle} />
