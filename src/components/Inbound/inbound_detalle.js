@@ -58,8 +58,8 @@ class InboundDetalle extends Component {
         } else {
             const Listado = this.state.listaDanios.map(danio => {
 
-                return   <button className="list-group-item " id="idDanioSelecionado" value={danio._id}  data-toggle="modal" data-target="#exampleModal3" onClick={this.onClick()}  > {danio.nombre} </button>
-                // return   <a className="list-group-item " href="#!" id="idDanioSelecionado" value={danio._id}  data-toggle="modal" data-target="#exampleModal3" onClick={this.onInputChange()} > {danio.nombre}      </a>
+                // return   <button className="list-group-item " id="idDanioSelecionado" value={danio._id}  data-toggle="modal" data-target="#exampleModal3" onClick={this.onClick()}  > {danio.nombre} </button>
+                 return   <a className="list-group-item " href="#!" id="idDanioSelecionado" value={danio._id}  data-toggle="modal" data-target="#exampleModal3"  > {danio.nombre}      </a>
 
             })
           
