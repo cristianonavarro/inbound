@@ -1,23 +1,29 @@
 import axios from 'axios'
 import React, { Component } from 'react';
 
-var cargado=false;
+
+var cargado = false;
+
 
 class InboundDetalle extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            idDanioSelecionado:"",
-            nombreDanioSelecionado:"",
+
+            idDanioSelecionado: "",
+            nombreDanioSelecionado: "",
+
             lista: [],
             danio: "",
             leve: 0,
             severo: 0,
             merma: 0,
-            
+
+
             listaDanios: [],
         }
-        
+
+
 
     }
     componentDidMount() {
@@ -29,8 +35,7 @@ class InboundDetalle extends Component {
         axios.get('https://inboundbelher.herokuapp.com/catalogos/danios')
             .then(danios => { this.setState({ listaDanios: danios.data, danio: danios.data[0]._id }) })
             .catch(err => alert(err))
-            
-            
+
     }
 
     onInputChange = (e) => {
@@ -38,18 +43,27 @@ class InboundDetalle extends Component {
         this.setState({
             [id]: value
         })
+        console.log(e.target)
     }
     onClick = (e) => {
-        if(cargado) { 
 
-            const { id, value } = e.target
-            this.setState({
-                [id]: value
-            })
-            }
-          
-        
+        const { id, value } = e.target
+        this.setState({
+            [id]: value
+        })
+        console.log(this.state)
+
     }
+    onClick2 = (e) => {
+        const valores = e.target
+
+        this.setState({ idDanioSelecionado: e.target.value });
+        console.log(this.state.idDanioSelecionado)
+        console.log(e.target)
+    }
+    }
+
+
 
 
     renderSelectDanio = () => {
@@ -58,11 +72,14 @@ class InboundDetalle extends Component {
         } else {
             const Listado = this.state.listaDanios.map(danio => {
 
-                // return   <button className="list-group-item " id="idDanioSelecionado" value={danio._id}  data-toggle="modal" data-target="#exampleModal3" onClick={this.onClick()}  > {danio.nombre} </button>
-                 return   <a className="list-group-item " href="#!" id="idDanioSelecionado" value={danio._id}  data-toggle="modal" data-target="#exampleModal3"  > {danio.nombre}      </a>
+
+                return <button className="list-group-item " id="idDanioSelecionado" value={danio._id} data-toggle="modal" data-target="#exampleModal3" onClick={this.onClick2}  > {danio.nombre} </button>
+                // return   <a className="list-group-item " href="#!" id="idDanioSelecionado" value={danio._id}  data-toggle="modal" data-target="#exampleModal3" onClick={this.onClick2}  > {danio.nombre}  </a>
 
             })
-          
+
+
+
             return Listado
 
         }
@@ -73,15 +90,20 @@ class InboundDetalle extends Component {
     onSubmitForm = (e) => {
         e.preventDefault()
         console.log(this.state)
-        axios.post(`https://inboundbelher.herokuapp.com/inbound/danios/create/`, { danio: this.state.danio, leve: this.state.leve, severo: this.state.severo, merma: this.state.merma })
-            .then(lote => window.location.reload())
-            .catch(err => alert(err))
+
+        if (e.target.id === "Guardar") {
+            axios.post(`https://inboundbelher.herokuapp.com/inbound/danios/create/`, { danio: this.state.danio, leve: this.state.leve, severo: this.state.severo, merma: this.state.merma })
+                .then(lote => window.location.reload())
+                .catch(err => alert(err))
+        }
+
+
 
     }
 
 
     render() {
-        
+
         return (
 
             <form className="p-4" onSubmit={this.onSubmitForm}>
@@ -126,38 +148,28 @@ class InboundDetalle extends Component {
                 </div>
 
 
-                {/* <button type="button" className="btn btn-info btn_nuevo" data-toggle="modal" data-target="#exampleModal3">Nuevo</button> */}
 
-
-
-                <div className="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
-                    <div className="modal-dialog" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModal3Label">Nuevo lote</h5>
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModal3Label">Captura de daños</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div classname="modal-body">
-                                <div class="form-group">
-                                    <select classname="estatus" id="lote" onchange="{this.onInputChange}" value="{this.state.lote}">
-                                        {this.renderSelectDanio()}
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <input classname="form-control" id="leve" max="50" min="0" onchange="{this.onInputChange}" type="number" value="{this.state.leve}" />
-                                </div>
-                                <div class="form-group">
-                                    <input classname="form-control" id="severo" max="50" min="0" onchange="{this.onInputChange}" type="number" value="{this.state.severo}" />
-                                </div>
-                                <div class="form-group">
-                                    <input classname="form-control" id="merma" max="50" min="0" onchange="{this.onInputChange}" type="number" value="{this.state.merma}" />
-                                </div>
+                            <div class="modal-body">
+                                <label>Cantidad de productos con daño leve</label>
+                                <input type="number" min="0" max="50" className="form-control" id="leve" placeholder="Leve" onChange={this.onInputChange} value={this.state.leve} />
+                                <label>Cantidad de productos con daño severo</label>
+                                <input type="number" min="0" max="50" className="form-control" id="severo" placeholder="Severo" onChange={this.onInputChange} value={this.state.severo} />
+                                <label>Cantidad de merma</label>
+                                <input type="number" min="0" max="50" className="form-control" id="merma" placeholder="Merma" onChange={this.onInputChange} value={this.state.merma} />
                             </div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" className="btn btn-primary">Guardar</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary">Guardar</button>
+              
                             </div>
                         </div>
                     </div>

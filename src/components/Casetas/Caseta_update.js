@@ -20,15 +20,15 @@ class Caseta_update extends Component {
         this.setState({
             [id]: value
         })
-        console.log(e.target.value)
+        console.log(this.state)
     }
     componentDidMount() {
         axios.get('https://inboundbelher.herokuapp.com/catalogos/lotes')
             .then(Lotes => {
-                this.setState({ lista: Lotes.data })
+                this.setState({ lista: Lotes.data ,lote:Lotes.data[0]._id})
             })
             .catch(err => alert(err))
-
+            this.setState({nombre:this.props.match.params.nombre})
     }
 
     onSubmitForm = (e) => {
@@ -37,20 +37,23 @@ class Caseta_update extends Component {
             .then(lote => alert("Caseta actualizado"))
             .catch(err => alert(err))
     }
-    renderEstatus = () => {
+    renderLotes = () => {
         if (this.state.lista.length === 0) {
             return <option></option>
         } else {
 
             const Listado = this.state.lista.map(lote => {
+                
                 return <option value={lote._id}>{lote.nombre}</option>
 
             })
             return Listado
+            
         }
 
     }
     render() {
+        console.log(this.state)
         return (
 
             <form className="p-4" onSubmit={this.onSubmitForm}>
@@ -71,7 +74,7 @@ class Caseta_update extends Component {
                         </div>
                     </div>
                     <select className="cmb_lote" id="lote" onChange={this.onInputChange} value={this.state.lote}>
-                        {this.renderEstatus()}
+                        {this.renderLotes()}
                     </select>
                 </div>
 

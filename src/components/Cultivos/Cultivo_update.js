@@ -12,6 +12,9 @@ class Cultivo_update extends Component {
             nombre_estatus:"Activo"
         }
     }
+    componentDidMount(){
+        this.setState({nombre:this.props.match.params.nombre})
+       }
     onInputChange=(e)=>{
         const {id,value}=e.target
         this.setState({
