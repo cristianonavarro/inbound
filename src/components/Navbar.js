@@ -31,6 +31,9 @@ class Navbar extends Component{
                     <li className="nav-item">
                          <a className="nav-link" href="/catalogo/danios">Daños</a>
                     </li>
+                    <li className="nav-item">
+                         <a className="nav-link" href="/inbound">Inbound</a>
+                    </li>
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
                 <input className="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Search"/>
