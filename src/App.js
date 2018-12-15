@@ -53,7 +53,7 @@ class App extends Component {
               <Route exact path="/catalogo/danios/update/:id/:nombre" component={Danios_update} />
 
               <Route exact path="/inbound" component={Inbound} />
-              <Route exact path="/inbound/:id" component={InboundDetalle} />
+              <Route exact path="/inbound/detalle/:id" component={InboundDetalle} />
 
             </div>
 
