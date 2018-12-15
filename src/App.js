@@ -23,6 +23,9 @@ import Variedad_update from './components/Variedades/Variedad_update'
 import Danios from './components/Danio/Danioss'
 import Danios_update from './components/Danio/Danios_update'
 
+import Inbound from './components/Inbound/inbound'
+import InboundDetalle from './components/Inbound/inbound_detalle'
+
 class App extends Component {
   render() {
     return (
@@ -47,7 +50,9 @@ class App extends Component {
 
               <Route exact path="/catalogo/danios" component={Danios} />
               <Route exact path="/catalogo/danios/update/:id" component={Danios_update} />
-
+              
+              <Route exact path="/inbound" component={Inbound} />
+              <Route exact path="/inbound/detalle/:id" component={InboundDetalle} />
 
             </div>
 

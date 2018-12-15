@@ -44,7 +44,6 @@ class Caseta extends Component {
     } else {
         const Listado = this.state.lista_lotes.map(lote => {
             return <option value={lote._id}>{lote.nombre}</option>
-
         })
        
         return Listado
